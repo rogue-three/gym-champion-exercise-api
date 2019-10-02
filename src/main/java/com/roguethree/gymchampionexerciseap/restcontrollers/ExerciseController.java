@@ -74,8 +74,6 @@ public class ExerciseController {
     }
 
 
-
-
     private Resource<Exercise> changeToResource(Exercise exercise){
         Resource<Exercise> exerciseResource = new Resource<>(exercise);
 
