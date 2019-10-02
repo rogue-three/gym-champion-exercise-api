@@ -11,8 +11,8 @@ import java.util.stream.Stream;
 public class JpaExerciseService implements ExerciseService {
 
     @Override
-    public Optional<Exercise> findByBodyPartName(String bodyPartName) {
-        return Optional.empty();
+    public Stream<Exercise> findByBodyPartName(String bodyPartName) {
+        return null;
     }
 
     @Override
