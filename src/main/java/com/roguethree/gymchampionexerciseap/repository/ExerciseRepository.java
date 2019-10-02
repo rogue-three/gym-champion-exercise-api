@@ -13,9 +13,9 @@ public interface ExerciseRepository extends CrudRepository<Exercise, Long> {
 
 
 
-    Stream<Exercise> findAllByBodyParts(BodyPart bodyPartName);
+//    Stream<Exercise> findAllByBodyParts(BodyPart bodyPartName);
 
-    Stream<Exercise> findAllByBodyParts(String bodyPartName);
+//    Stream<Exercise> findAllByBodyParts(String bodyPartName);
 
-    Stream<Exercise> findAllByBodyPartsName(String bodyPartName);
+//    Stream<Exercise> findAllByBodyPartsName(String bodyPartName);
 }

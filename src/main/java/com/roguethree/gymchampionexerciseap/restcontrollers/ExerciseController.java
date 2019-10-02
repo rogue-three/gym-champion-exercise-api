@@ -27,7 +27,7 @@ public class ExerciseController {
         return null;
     }
 
-    @GetMapping(value = "/name/{name")
+    @GetMapping(value = "/name/{name}")
     public ResponseEntity<Resource<Exercise>> getExerciseByName(@PathVariable String name){
         return exerciseService.findByName(name)
                 .map(this::changeToResource)

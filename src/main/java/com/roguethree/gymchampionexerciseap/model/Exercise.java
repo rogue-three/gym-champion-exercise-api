@@ -113,22 +113,22 @@ public class Exercise {
         this.muscles = muscles;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Exercise exercise = (Exercise) o;
-        return id.equals(exercise.id) &&
-                name.equals(exercise.name) &&
-                equipment == exercise.equipment &&
-                bodyPosition == exercise.bodyPosition &&
-                pushPullScheme == exercise.pushPullScheme &&
-                bodyParts.equals(exercise.bodyParts) &&
-                muscles.equals(exercise.muscles);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, equipment, bodyPosition, pushPullScheme, bodyParts, muscles);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Exercise exercise = (Exercise) o;
+//        return id.equals(exercise.id) &&
+//                name.equals(exercise.name) &&
+//                equipment == exercise.equipment &&
+//                bodyPosition == exercise.bodyPosition &&
+//                pushPullScheme == exercise.pushPullScheme &&
+//                bodyParts.equals(exercise.bodyParts) &&
+//                muscles.equals(exercise.muscles);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, name, equipment, bodyPosition, pushPullScheme, bodyParts, muscles);
+//    }
 }

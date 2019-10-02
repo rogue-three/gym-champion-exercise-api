@@ -10,6 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "body_part")
+
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "name")
 public class BodyPart {
@@ -56,18 +57,18 @@ public class BodyPart {
         this.exercises = exercises;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BodyPart bodyPart = (BodyPart) o;
-        return id.equals(bodyPart.id) &&
-                name.equals(bodyPart.name) &&
-                exercises.equals(bodyPart.exercises);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, exercises);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        BodyPart bodyPart = (BodyPart) o;
+//        return id.equals(bodyPart.id) &&
+//                name.equals(bodyPart.name) &&
+//                exercises.equals(bodyPart.exercises);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, name, exercises);
+//    }
 }
