@@ -19,6 +19,7 @@ public class Muscle {
     @Column(name = "muscle_id")
     private Long id;
 
+    @Column(name = "muscle_name")
     private String name;
 
     @ManyToMany(mappedBy = "muscles")

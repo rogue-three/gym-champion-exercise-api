@@ -44,6 +44,7 @@ public class DbBootstraper implements CommandLineRunner {
         if(!armsBPOptional.isPresent()){
             throw new RuntimeException("No such body part in data base");
         }
+//        exerciseRepository.save(armsBPOptional.get());
 
         Optional<BodyPart> foreArmsBPOptional = bodyPartRepository.findByName("Forearms");
 
@@ -193,6 +194,8 @@ public class DbBootstraper implements CommandLineRunner {
         dumbbellBicepsCurlStandingMuscleSet.add(bicepsSHMusclesOptional.get());
         dumbbellBicepsCurlStanding.setMuscles(dumbbellBicepsCurlStandingMuscleSet);
         exerciseRepository.save(dumbbellBicepsCurlStanding);
+
+
     }
 
 

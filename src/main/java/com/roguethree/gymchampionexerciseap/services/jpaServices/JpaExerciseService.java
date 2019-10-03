@@ -26,7 +26,7 @@ public class JpaExerciseService implements ExerciseService {
 
 //    @Override
 //    public Stream<Exercise> findByBodyPartName(String bodyPartName) {
-//        return exerciseRepository.findAllByBodyPartsName(bodyPartName);
+//        return exerciseRepository.findAllByBodyPartName(bodyPartName);
 //    }
 
     @Override

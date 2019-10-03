@@ -2,6 +2,7 @@ package com.roguethree.gymchampionexerciseap.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -10,7 +11,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "body_part")
-
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "name")
 public class BodyPart {
@@ -20,6 +20,7 @@ public class BodyPart {
     @Column(name = "body_part_id")
     private Long id;
 
+    @Column(name = "body_part_name")
     private String name;
 
     @ManyToMany(mappedBy = "bodyParts")

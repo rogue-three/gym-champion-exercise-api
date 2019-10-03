@@ -8,6 +8,8 @@ import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.stream.Collectors;
+
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
@@ -24,7 +26,12 @@ public class ExerciseController {
     // TODO
     @GetMapping
     public ResponseEntity<Resources<Resource<Exercise>>> getAllExercises(){
-        return null;
+        Resources<Resource<Exercise>> resources = new Resources<>(
+                exerciseService.findAll()
+                    .map(this::changeToResource)
+                    .collect(Collectors.toList())
+        );
+        return ResponseEntity.ok().body(resources);
     }
 
     @GetMapping(value = "/name/{name}")
@@ -43,11 +50,20 @@ public class ExerciseController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // TODO
-    @GetMapping(value = "/bodypart/{bodyPart}")
-    public ResponseEntity<Resources<Resource<Exercise>>> getExercisesByBodyPart(@PathVariable String bodyPart){
-        return null;
-    }
+//    // TODO
+//    @GetMapping(value = "/bodypart/{bodyPart}")
+//    public ResponseEntity<Resources<Resource<Exercise>>> getExercisesByBodyPart(@PathVariable("bodyPart") String bodyPart){
+//        System.out.println(exerciseService.findByBodyPartName(bodyPart).count());
+//        System.out.println("////////////////////////////////" + exerciseService.findByBodyPartName(bodyPart).map(Exercise::getName));
+//        Resources<Resource<Exercise>> resources = new Resources<>(
+//                exerciseService.findByBodyPartName(bodyPart)
+//                    .map(this::changeToResource)
+//                    .collect(Collectors.toList())
+//        );
+////        resources.add(linkTo(methodOn(ExerciseController.class)
+////            .getExercisesByBodyPart(bodyPart)).withRel("byBodyPart"));
+//        return ResponseEntity.ok().body(resources);
+//    }
 
     // TODO
     @PostMapping
@@ -76,13 +92,11 @@ public class ExerciseController {
 
     private Resource<Exercise> changeToResource(Exercise exercise){
         Resource<Exercise> exerciseResource = new Resource<>(exercise);
-
         exerciseResource.add(linkTo(methodOn(ExerciseController.class)
         .getExerciseById(exercise.getId()))
         .withSelfRel());
         return exerciseResource;
     }
-
 
 
 }

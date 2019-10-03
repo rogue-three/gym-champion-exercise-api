@@ -20,6 +20,7 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "exercise_name")
     private String name;
 
     @Enumerated(value = EnumType.STRING)
