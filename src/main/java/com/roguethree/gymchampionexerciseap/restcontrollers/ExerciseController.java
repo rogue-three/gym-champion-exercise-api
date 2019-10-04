@@ -6,6 +6,7 @@ import com.roguethree.gymchampionexerciseap.services.ExerciseService;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
@@ -50,20 +51,21 @@ public class ExerciseController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-//    // TODO
-//    @GetMapping(value = "/bodypart/{bodyPart}")
-//    public ResponseEntity<Resources<Resource<Exercise>>> getExercisesByBodyPart(@PathVariable("bodyPart") String bodyPart){
-//        System.out.println(exerciseService.findByBodyPartName(bodyPart).count());
-//        System.out.println("////////////////////////////////" + exerciseService.findByBodyPartName(bodyPart).map(Exercise::getName));
-//        Resources<Resource<Exercise>> resources = new Resources<>(
-//                exerciseService.findByBodyPartName(bodyPart)
-//                    .map(this::changeToResource)
-//                    .collect(Collectors.toList())
-//        );
-////        resources.add(linkTo(methodOn(ExerciseController.class)
-////            .getExercisesByBodyPart(bodyPart)).withRel("byBodyPart"));
-//        return ResponseEntity.ok().body(resources);
-//    }
+    // TODO
+    @Transactional
+    @GetMapping(value = "/bodypart/{bodyPart}")
+    public ResponseEntity<Resources<Resource<Exercise>>> getExercisesByBodyPart(@PathVariable("bodyPart") String bodyPart){
+        System.out.println(exerciseService.findByBodyPartName(bodyPart).count());
+        System.out.println("////////////////////////////////" + exerciseService.findByBodyPartName(bodyPart).map(Exercise::getName));
+        Resources<Resource<Exercise>> resources = new Resources<>(
+                exerciseService.findByBodyPartName(bodyPart)
+                    .map(this::changeToResource)
+                    .collect(Collectors.toList())
+        );
+//        resources.add(linkTo(methodOn(ExerciseController.class)
+//            .getExercisesByBodyPart(bodyPart)).withRel("byBodyPart"));
+        return ResponseEntity.ok().body(resources);
+    }
 
     // TODO
     @PostMapping

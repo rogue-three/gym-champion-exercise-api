@@ -17,13 +17,10 @@ public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
 
 //    Stream<Exercise> findExercisesByEquipmentNa
 
-//
-//    @Query(value =
-//            "SELECT * FROM exercise e " +
-//                    "JOIN exercise_to_body_part ebp ON e.id = ebp.exercise_id " +
-//                    "JOIN body_part bp ON ebp.body_part_id = bp.body_part_id " +
-//                    "WHERE bp.body_part_name = ?1", nativeQuery=true)
-//    Stream<Exercise> findAllByBodyPartName(@Param("body_part_name") String bodyPartName);
+
+    @Query(value =
+            "SELECT * FROM ", nativeQuery=true)
+    Stream<Exercise> findAllByBodyPartName(@Param("body_part_name") String bodyPartName);
 
 
 }
