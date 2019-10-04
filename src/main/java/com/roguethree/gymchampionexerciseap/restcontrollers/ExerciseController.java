@@ -16,38 +16,12 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping(value = "/api/v1/exercises")
-public class ExerciseController {
+public class ExerciseController implements CrudRestController<Exercise, Long>{
 
     private final ExerciseService exerciseService;
 
     public ExerciseController(ExerciseService exerciseService) {
         this.exerciseService = exerciseService;
-    }
-
-    @GetMapping
-    public ResponseEntity<Resources<Resource<Exercise>>> getAllExercises(){
-        Resources<Resource<Exercise>> resources = new Resources<>(
-                exerciseService.findAll()
-                    .map(this::changeToResource)
-                    .collect(Collectors.toList())
-        );
-        return ResponseEntity.ok().body(resources);
-    }
-
-    @GetMapping(value = "/name/{name}")
-    public ResponseEntity<Resource<Exercise>> getExerciseByName(@PathVariable String name){
-        return exerciseService.findByName(name)
-                .map(this::changeToResource)
-                .map(bodyOfResource -> ResponseEntity.ok().body(bodyOfResource))
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @GetMapping(value = "/id/{id}")
-    public ResponseEntity<Resource<Exercise>> getExerciseById(@PathVariable Long id){
-        return exerciseService.findById(id)
-                .map(this::changeToResource)
-                .map(bodyOfResource -> ResponseEntity.ok().body(bodyOfResource))
-                .orElse(ResponseEntity.notFound().build());
     }
 
     // TODO - ask on stack what the hell is going on
@@ -66,15 +40,61 @@ public class ExerciseController {
 //        return ResponseEntity.ok().body(resources);
 //    }
 
+    @Override
+    @GetMapping
+    public ResponseEntity<Resources<Resource<Exercise>>> getAll() {
+        Resources<Resource<Exercise>> resources = new Resources<>(
+                exerciseService.findAll()
+                        .map(this::changeToResource)
+                        .collect(Collectors.toList())
+        );
+        return ResponseEntity.ok().body(resources);
+    }
+
+    @Override
+    @GetMapping(value = "/id/{id}")
+    public ResponseEntity<Resource<Exercise>> getById(Long id) {
+        return exerciseService.findById(id)
+                .map(this::changeToResource)
+                .map(bodyOfResource -> ResponseEntity.ok().body(bodyOfResource))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @Override
+    @GetMapping(value = "/name/{name}")
+    public ResponseEntity<Resource<Exercise>> getByName(String name) {
+        return exerciseService.findByName(name)
+                .map(this::changeToResource)
+                .map(bodyOfResource -> ResponseEntity.ok().body(bodyOfResource))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @Override
+    public ResponseEntity<?> add() {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<?> remove() {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<?> replace() {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<?> update() {
+        return null;
+    }
 
 
     private Resource<Exercise> changeToResource(Exercise exercise){
         Resource<Exercise> exerciseResource = new Resource<>(exercise);
         exerciseResource.add(linkTo(methodOn(ExerciseController.class)
-        .getExerciseById(exercise.getId()))
-        .withSelfRel());
+                .getById(exercise.getId()))
+                .withSelfRel());
         return exerciseResource;
     }
-
-
 }
