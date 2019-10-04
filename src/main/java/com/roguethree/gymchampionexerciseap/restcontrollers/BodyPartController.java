@@ -4,10 +4,7 @@ import com.roguethree.gymchampionexerciseap.model.BodyPart;
 import com.roguethree.gymchampionexerciseap.services.BodyPartService;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
@@ -30,6 +27,32 @@ public class BodyPartController {
                 .map(bodyOfResource -> ResponseEntity.ok().body(bodyOfResource))
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    // TODO
+    @PostMapping
+    public ResponseEntity<?> addBodyPart(){
+        return null;
+    }
+
+    // TODO
+    @DeleteMapping
+    public ResponseEntity<?> removeBodyPart(){
+        return null;
+    }
+
+    // TODO
+    @PutMapping
+    public ResponseEntity<?> replaceBodyPart(){
+        return null;
+    }
+
+    // TODO
+    @PatchMapping
+    public ResponseEntity<?> updateBodyPart(){
+        return null;
+    }
+
+
 
 
     private Resource<BodyPart> changeToResource(BodyPart bodyPart){

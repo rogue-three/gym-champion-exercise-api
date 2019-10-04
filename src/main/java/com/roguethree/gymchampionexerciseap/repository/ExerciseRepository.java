@@ -15,12 +15,10 @@ public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
 
     Optional<Exercise> findByName(String name);
 
-//    Stream<Exercise> findExercisesByEquipmentNa
 
-
-    @Query(value =
-            "SELECT * FROM ", nativeQuery=true)
-    Stream<Exercise> findAllByBodyPartName(@Param("body_part_name") String bodyPartName);
+//    @Query(value =
+//            "SELECT * FROM ", nativeQuery=true)
+//    Stream<Exercise> findAllByBodyPartName(@Param("body_part_name") String bodyPartName);
 
 
 }

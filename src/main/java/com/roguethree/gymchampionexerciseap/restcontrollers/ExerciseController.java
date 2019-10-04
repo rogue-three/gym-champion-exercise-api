@@ -24,7 +24,6 @@ public class ExerciseController {
         this.exerciseService = exerciseService;
     }
 
-    // TODO
     @GetMapping
     public ResponseEntity<Resources<Resource<Exercise>>> getAllExercises(){
         Resources<Resource<Exercise>> resources = new Resources<>(
@@ -51,21 +50,21 @@ public class ExerciseController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // TODO
-    @Transactional
-    @GetMapping(value = "/bodypart/{bodyPart}")
-    public ResponseEntity<Resources<Resource<Exercise>>> getExercisesByBodyPart(@PathVariable("bodyPart") String bodyPart){
-        System.out.println(exerciseService.findByBodyPartName(bodyPart).count());
-        System.out.println("////////////////////////////////" + exerciseService.findByBodyPartName(bodyPart).map(Exercise::getName));
-        Resources<Resource<Exercise>> resources = new Resources<>(
-                exerciseService.findByBodyPartName(bodyPart)
-                    .map(this::changeToResource)
-                    .collect(Collectors.toList())
-        );
-//        resources.add(linkTo(methodOn(ExerciseController.class)
-//            .getExercisesByBodyPart(bodyPart)).withRel("byBodyPart"));
-        return ResponseEntity.ok().body(resources);
-    }
+    // TODO - ask on stack what the hell is going on
+//    @Transactional
+//    @GetMapping(value = "/bodypart/{bodyPart}")
+//    public ResponseEntity<Resources<Resource<Exercise>>> getExercisesByBodyPart(@PathVariable("bodyPart") String bodyPart){
+//        System.out.println(exerciseService.findByBodyPartName(bodyPart).count());
+//        System.out.println("////////////////////////////////" + exerciseService.findByBodyPartName(bodyPart).map(Exercise::getName));
+//        Resources<Resource<Exercise>> resources = new Resources<>(
+//                exerciseService.findByBodyPartName(bodyPart)
+//                    .map(this::changeToResource)
+//                    .collect(Collectors.toList())
+//        );
+////        resources.add(linkTo(methodOn(ExerciseController.class)
+////            .getExercisesByBodyPart(bodyPart)).withRel("byBodyPart"));
+//        return ResponseEntity.ok().body(resources);
+//    }
 
     // TODO
     @PostMapping
