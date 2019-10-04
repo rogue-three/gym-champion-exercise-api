@@ -66,29 +66,6 @@ public class ExerciseController {
 //        return ResponseEntity.ok().body(resources);
 //    }
 
-    // TODO
-    @PostMapping
-    public ResponseEntity<?> addExercise(){
-        return null;
-    }
-
-    // TODO
-    @DeleteMapping
-    public ResponseEntity<?> removeExercise(){
-        return null;
-    }
-
-    // TODO
-    @PutMapping
-    public ResponseEntity<?> replaceExercise(){
-        return null;
-    }
-
-    // TODO
-    @PatchMapping
-    public ResponseEntity<?> updateExercise(){
-        return null;
-    }
 
 
     private Resource<Exercise> changeToResource(Exercise exercise){

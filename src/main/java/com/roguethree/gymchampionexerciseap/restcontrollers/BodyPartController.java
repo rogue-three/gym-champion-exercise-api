@@ -3,6 +3,7 @@ package com.roguethree.gymchampionexerciseap.restcontrollers;
 import com.roguethree.gymchampionexerciseap.model.BodyPart;
 import com.roguethree.gymchampionexerciseap.services.BodyPartService;
 import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping(value = "api/v1/bodyparts")
-public class BodyPartController {
+public class BodyPartController implements CrudRestController<BodyPart, Long>{
 
     private final BodyPartService bodyPartService;
 
@@ -20,46 +21,52 @@ public class BodyPartController {
     }
 
 
+    @Override
+    public ResponseEntity<Resources<Resource<BodyPart>>> getAll() {
+        return null;
+    }
+
+    @Override
     @GetMapping("/id/{id}")
-    public ResponseEntity<Resource<BodyPart>> getBodyPartById(@PathVariable("id") Long id){
+    public ResponseEntity<Resource<BodyPart>> getById(Long id) {
         return bodyPartService.findById(id)
                 .map(this::changeToResource)
                 .map(bodyOfResource -> ResponseEntity.ok().body(bodyOfResource))
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // TODO
-    @PostMapping
-    public ResponseEntity<?> addBodyPart(){
+    @Override
+    @GetMapping(value = "/name/{name}")
+    public ResponseEntity<Resource<BodyPart>> getByName(String name) {
         return null;
     }
 
-    // TODO
-    @DeleteMapping
-    public ResponseEntity<?> removeBodyPart(){
+    @Override
+    public ResponseEntity<?> add() {
         return null;
     }
 
-    // TODO
-    @PutMapping
-    public ResponseEntity<?> replaceBodyPart(){
+    @Override
+    public ResponseEntity<?> remove() {
         return null;
     }
 
-    // TODO
-    @PatchMapping
-    public ResponseEntity<?> updateBodyPart(){
+    @Override
+    public ResponseEntity<?> replace() {
         return null;
     }
 
-
-
+    @Override
+    public ResponseEntity<?> update() {
+        return null;
+    }
 
     private Resource<BodyPart> changeToResource(BodyPart bodyPart){
         Resource<BodyPart> bodyPartResource = new Resource<>(bodyPart);
         bodyPartResource.add(linkTo(methodOn(BodyPartController.class)
-            .getBodyPartById(bodyPart.getId()))
+            .getById(bodyPart.getId()))
             .withSelfRel());
         return bodyPartResource;
     }
+
 }
