@@ -46,60 +46,60 @@ public class DbBootstraper implements CommandLineRunner {
         }
 //        exerciseRepository.save(armsBPOptional.get());
 
-        Optional<BodyPart> foreArmsBPOptional = bodyPartRepository.findByName("Forearms");
+        Optional<BodyPart> foreArmsBPOptional = bodyPartRepository.findByName("forearms");
 
-        Optional<BodyPart> shouldersArmsBPOptional = bodyPartRepository.findByName("Shoulders");
+        Optional<BodyPart> shouldersArmsBPOptional = bodyPartRepository.findByName("shoulders");
 
-        Optional<BodyPart> neckBPOptional = bodyPartRepository.findByName("Neck");
+        Optional<BodyPart> neckBPOptional = bodyPartRepository.findByName("neck");
 
-        Optional<BodyPart> backBPOptional = bodyPartRepository.findByName("Back");
+        Optional<BodyPart> backBPOptional = bodyPartRepository.findByName("back");
 
-        Optional<BodyPart> chestBPOptional = bodyPartRepository.findByName("Chest");
+        Optional<BodyPart> chestBPOptional = bodyPartRepository.findByName("chest");
 
-        Optional<BodyPart> absBPOptional = bodyPartRepository.findByName("Abs");
+        Optional<BodyPart> absBPOptional = bodyPartRepository.findByName("abs");
 
-        Optional<BodyPart> glutesBPOptional = bodyPartRepository.findByName("Glutes");
+        Optional<BodyPart> glutesBPOptional = bodyPartRepository.findByName("glutes");
 
-        Optional<BodyPart> hamsBPOptional = bodyPartRepository.findByName("Hams");
+        Optional<BodyPart> hamsBPOptional = bodyPartRepository.findByName("hams");
 
-        Optional<BodyPart> quadsBPOptional = bodyPartRepository.findByName("Quads");
+        Optional<BodyPart> quadsBPOptional = bodyPartRepository.findByName("quads");
 
-        Optional<BodyPart> calvesBPOptional = bodyPartRepository.findByName("Calves");
+        Optional<BodyPart> calvesBPOptional = bodyPartRepository.findByName("calves");
 
         // Muscles init
 
-        Optional<Muscle> bicepsLHMusclesOptional = muscleRepository.findByName("Biceps. Long Head");
+        Optional<Muscle> bicepsLHMusclesOptional = muscleRepository.findByName("biceps. long head");
         if(!bicepsLHMusclesOptional.isPresent()){
             throw new RuntimeException("No such muscle in data base");
         }
         muscleRepository.save(bicepsLHMusclesOptional.get());
 
-        Optional<Muscle> bicepsSHMusclesOptional = muscleRepository.findByName("Biceps. Short Head");
+        Optional<Muscle> bicepsSHMusclesOptional = muscleRepository.findByName("biceps. short head");
         if(!bicepsSHMusclesOptional.isPresent()){
             throw new RuntimeException("No such muscle in data base");
         }
 
-        Optional<Muscle> tricpsLHMusclesOptional = muscleRepository.findByName("Triceps. Long Head");
+        Optional<Muscle> tricpsLHMusclesOptional = muscleRepository.findByName("triceps. long head");
         if(!tricpsLHMusclesOptional.isPresent()){
             throw new RuntimeException("No such muscle in data base");
         }
 
-        Optional<Muscle> tricpsLatHMusclesOptional = muscleRepository.findByName("Triceps. Lateral Head");
+        Optional<Muscle> tricpsLatHMusclesOptional = muscleRepository.findByName("triceps. lateral head");
         if(!tricpsLatHMusclesOptional.isPresent()){
             throw new RuntimeException("No such muscle in data base");
         }
 
-        Optional<Muscle> tricpsMHMusclesOptional = muscleRepository.findByName("Triceps. Medial Head");
+        Optional<Muscle> tricpsMHMusclesOptional = muscleRepository.findByName("triceps. medial head");
         if(!tricpsMHMusclesOptional.isPresent()){
             throw new RuntimeException("No such muscle in data base");
         }
 
-        Optional<Muscle> forearmsFlexMusclesOptional = muscleRepository.findByName("Forearms. Flexors");
+        Optional<Muscle> forearmsFlexMusclesOptional = muscleRepository.findByName("forearms. flexors");
         if(!forearmsFlexMusclesOptional.isPresent()){
             throw new RuntimeException("No such muscle in data base");
         }
 
-        Optional<Muscle> forearmsExtMusclesOptional = muscleRepository.findByName("Forearms. Extensors");
+        Optional<Muscle> forearmsExtMusclesOptional = muscleRepository.findByName("forearms. extensors");
         if(!forearmsExtMusclesOptional.isPresent()){
             throw new RuntimeException("No such muscle in data base");
         }

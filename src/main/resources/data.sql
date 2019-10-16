@@ -3,29 +3,29 @@
 
 -- Body Parts
 INSERT INTO body_part (body_part_name) VALUES ('arms');
-INSERT INTO body_part (body_part_name) VALUES ('Forearms');
-INSERT INTO body_part (body_part_name) VALUES ('Shoulders');
-INSERT INTO body_part (body_part_name) VALUES ('Neck');
-INSERT INTO body_part (body_part_name) VALUES ('Back');
-INSERT INTO body_part (body_part_name) VALUES ('Chest');
-INSERT INTO body_part (body_part_name) VALUES ('Abs');
-INSERT INTO body_part (body_part_name) VALUES ('Glutes');
-INSERT INTO body_part (body_part_name) VALUES ('Hams');
-INSERT INTO body_part (body_part_name) VALUES ('Quads');
-INSERT INTO body_part (body_part_name) VALUES ('Calves');
+INSERT INTO body_part (body_part_name) VALUES ('forearms');
+INSERT INTO body_part (body_part_name) VALUES ('shoulders');
+INSERT INTO body_part (body_part_name) VALUES ('neck');
+INSERT INTO body_part (body_part_name) VALUES ('back');
+INSERT INTO body_part (body_part_name) VALUES ('chest');
+INSERT INTO body_part (body_part_name) VALUES ('abs');
+INSERT INTO body_part (body_part_name) VALUES ('glutes');
+INSERT INTO body_part (body_part_name) VALUES ('hams');
+INSERT INTO body_part (body_part_name) VALUES ('quads');
+INSERT INTO body_part (body_part_name) VALUES ('calves');
 -------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------
 
 -- Muscles
 
 -- Arms
-INSERT INTO muscle (muscle_name) VALUES ('Biceps. Long Head');
-INSERT INTO muscle (muscle_name) VALUES ('Biceps. Short Head');
-INSERT INTO muscle (muscle_name) VALUES ('Triceps. Long Head');
-INSERT INTO muscle (muscle_name) VALUES ('Triceps. Lateral Head');
-INSERT INTO muscle (muscle_name) VALUES ('Triceps. Medial Head');
-INSERT INTO muscle (muscle_name) VALUES ('Forearms. Flexors');
-INSERT INTO muscle (muscle_name) VALUES ('Forearms. Extensors');
+INSERT INTO muscle (muscle_name) VALUES ('biceps. long head');
+INSERT INTO muscle (muscle_name) VALUES ('biceps. short head');
+INSERT INTO muscle (muscle_name) VALUES ('triceps. long head');
+INSERT INTO muscle (muscle_name) VALUES ('triceps. lateral head');
+INSERT INTO muscle (muscle_name) VALUES ('triceps. medial head');
+INSERT INTO muscle (muscle_name) VALUES ('forearms. flexors');
+INSERT INTO muscle (muscle_name) VALUES ('forearms. extensors');
 -- Shoulders
 INSERT INTO muscle (muscle_name) VALUES ('Deltoids. Anterior Head');
 INSERT INTO muscle (muscle_name) VALUES ('Deltoids. Medial Head');
