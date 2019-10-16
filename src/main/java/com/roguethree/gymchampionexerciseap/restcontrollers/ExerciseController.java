@@ -24,21 +24,6 @@ public class ExerciseController implements CrudRestController<Exercise, Long>{
         this.exerciseService = exerciseService;
     }
 
-    // TODO - ask on stack what the hell is going on
-//    @Transactional
-//    @GetMapping(value = "/bodypart/{bodyPart}")
-//    public ResponseEntity<Resources<Resource<Exercise>>> getExercisesByBodyPart(@PathVariable("bodyPart") String bodyPart){
-//        System.out.println(exerciseService.findByBodyPartName(bodyPart).count());
-//        System.out.println("////////////////////////////////" + exerciseService.findByBodyPartName(bodyPart).map(Exercise::getName));
-//        Resources<Resource<Exercise>> resources = new Resources<>(
-//                exerciseService.findByBodyPartName(bodyPart)
-//                    .map(this::changeToResource)
-//                    .collect(Collectors.toList())
-//        );
-////        resources.add(linkTo(methodOn(ExerciseController.class)
-////            .getExercisesByBodyPart(bodyPart)).withRel("byBodyPart"));
-//        return ResponseEntity.ok().body(resources);
-//    }
 
     @Override
     @GetMapping
@@ -88,6 +73,22 @@ public class ExerciseController implements CrudRestController<Exercise, Long>{
     public ResponseEntity<?> update() {
         return null;
     }
+
+    // TODO - ask on stack what the hell is going on
+//    @Transactional
+//    @GetMapping(value = "/bodypart/{bodyPart}")
+//    public ResponseEntity<Resources<Resource<Exercise>>> getExercisesByBodyPart(@PathVariable("bodyPart") String bodyPart){
+//        System.out.println(exerciseService.findByBodyPartName(bodyPart).count());
+//        System.out.println("////////////////////////////////" + exerciseService.findByBodyPartName(bodyPart).map(Exercise::getName));
+//        Resources<Resource<Exercise>> resources = new Resources<>(
+//                exerciseService.findByBodyPartName(bodyPart)
+//                    .map(this::changeToResource)
+//                    .collect(Collectors.toList())
+//        );
+////        resources.add(linkTo(methodOn(ExerciseController.class)
+////            .getExercisesByBodyPart(bodyPart)).withRel("byBodyPart"));
+//        return ResponseEntity.ok().body(resources);
+//    }
 
 
     private Resource<Exercise> changeToResource(Exercise exercise){

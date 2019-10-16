@@ -40,7 +40,7 @@ public class DbBootstraper implements CommandLineRunner {
 
         // Body Part initialization
 
-        Optional<BodyPart> armsBPOptional = bodyPartRepository.findByName("Arms");
+        Optional<BodyPart> armsBPOptional = bodyPartRepository.findByName("arms");
         if(!armsBPOptional.isPresent()){
             throw new RuntimeException("No such body part in data base");
         }

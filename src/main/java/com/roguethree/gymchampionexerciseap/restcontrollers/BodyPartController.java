@@ -7,6 +7,8 @@ import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.stream.Collectors;
+
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
@@ -23,7 +25,12 @@ public class BodyPartController implements CrudRestController<BodyPart, Long>{
 
     @Override
     public ResponseEntity<Resources<Resource<BodyPart>>> getAll() {
-        return null;
+        Resources<Resource<BodyPart>> resources = new Resources<>(
+                bodyPartService.findAll()
+                .map(this::changeToResource)
+                .collect(Collectors.toList())
+        );
+        return ResponseEntity.ok().body(resources);
     }
 
     @Override
@@ -38,7 +45,10 @@ public class BodyPartController implements CrudRestController<BodyPart, Long>{
     @Override
     @GetMapping(value = "/name/{name}")
     public ResponseEntity<Resource<BodyPart>> getByName(String name) {
-        return null;
+        return bodyPartService.findByName(name.toLowerCase())
+                .map(this::changeToResource)
+                .map(bodyPartResource -> ResponseEntity.ok().body(bodyPartResource))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @Override

@@ -2,7 +2,7 @@
 -------------------------------------------------------------------------------------------------------------
 
 -- Body Parts
-INSERT INTO body_part (body_part_name) VALUES ('Arms');
+INSERT INTO body_part (body_part_name) VALUES ('arms');
 INSERT INTO body_part (body_part_name) VALUES ('Forearms');
 INSERT INTO body_part (body_part_name) VALUES ('Shoulders');
 INSERT INTO body_part (body_part_name) VALUES ('Neck');
