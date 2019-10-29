@@ -7,9 +7,9 @@ import com.roguethree.gymchampionexerciseap.services.ExerciseService;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -55,17 +55,18 @@ public class ExerciseController implements CrudRestController<Exercise, Long>{
                 .orElse(ResponseEntity.notFound().build());
     }
 
-//    @GetMapping("/equipment/{equipment}")
-//    public ResponseEntity<Resources<Resource<Exercise>>> findByEquipment(@PathVariable String equipment){
-//        Resources<Resource<Exercise>> resources = new Resources<>(
-//                exerciseService.findByEquipment(Equipment.DUMBBELL)
-//                .map(this::changeToResource)
-//                .collect(Collectors.toList())
-//        );
-//        return ResponseEntity.ok().body(resources);
-//
-//
-//    }
+    @GetMapping("/equipment/{equipment}")
+    @Transactional
+    public ResponseEntity<Resources<Resource<Exercise>>> findByEquipment(@PathVariable String equipment){
+        Resources<Resource<Exercise>> resources = new Resources<>(
+                exerciseService.findByEquipment( Equipment.valueOf(equipment.toUpperCase()))
+                .map(this::changeToResource)
+                .collect(Collectors.toList())
+        );
+        return ResponseEntity.ok().body(resources);
+
+
+    }
 
     @Override
     public ResponseEntity<?> add() {

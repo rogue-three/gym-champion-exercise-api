@@ -40,8 +40,8 @@ public class JpaExerciseService implements ExerciseService {
         return exerciseRepository.findByName(name);
     }
 
-//    @Override
-//    public Stream<Exercise> findByEquipment(Equipment equipment) {
-//        return exerciseRepository.findByEquipment(equipment);
-//    }
+    @Override
+    public Stream<Exercise> findByEquipment(Equipment equipment) {
+        return exerciseRepository.findByEquipment(equipment);
+    }
 }

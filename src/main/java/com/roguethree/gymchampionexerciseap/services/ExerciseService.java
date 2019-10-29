@@ -10,5 +10,5 @@ public interface ExerciseService extends CrudService<Exercise, Long> {
 
 //    Stream<Exercise> findByBodyPartName(String bodyPartName);
 
-//    Stream<Exercise> findByEquipment(Equipment equipment);
+    Stream<Exercise> findByEquipment(Equipment equipment);
 }
