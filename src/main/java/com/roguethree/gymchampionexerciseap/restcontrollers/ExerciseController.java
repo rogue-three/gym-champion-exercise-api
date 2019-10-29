@@ -2,6 +2,7 @@ package com.roguethree.gymchampionexerciseap.restcontrollers;
 
 
 import com.roguethree.gymchampionexerciseap.model.Exercise;
+import com.roguethree.gymchampionexerciseap.model.enums.Equipment;
 import com.roguethree.gymchampionexerciseap.services.ExerciseService;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
@@ -38,7 +39,7 @@ public class ExerciseController implements CrudRestController<Exercise, Long>{
 
     @Override
     @GetMapping(value = "/id/{id}")
-    public ResponseEntity<Resource<Exercise>> getById(Long id) {
+    public ResponseEntity<Resource<Exercise>> getById(@PathVariable Long id) {
         return exerciseService.findById(id)
                 .map(this::changeToResource)
                 .map(bodyOfResource -> ResponseEntity.ok().body(bodyOfResource))
@@ -47,12 +48,24 @@ public class ExerciseController implements CrudRestController<Exercise, Long>{
 
     @Override
     @GetMapping(value = "/name/{name}")
-    public ResponseEntity<Resource<Exercise>> getByName(String name) {
+    public ResponseEntity<Resource<Exercise>> getByName(@PathVariable String name) {
         return exerciseService.findByName(name)
                 .map(this::changeToResource)
                 .map(bodyOfResource -> ResponseEntity.ok().body(bodyOfResource))
                 .orElse(ResponseEntity.notFound().build());
     }
+
+//    @GetMapping("/equipment/{equipment}")
+//    public ResponseEntity<Resources<Resource<Exercise>>> findByEquipment(@PathVariable String equipment){
+//        Resources<Resource<Exercise>> resources = new Resources<>(
+//                exerciseService.findByEquipment(Equipment.DUMBBELL)
+//                .map(this::changeToResource)
+//                .collect(Collectors.toList())
+//        );
+//        return ResponseEntity.ok().body(resources);
+//
+//
+//    }
 
     @Override
     public ResponseEntity<?> add() {
