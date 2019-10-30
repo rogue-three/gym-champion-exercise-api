@@ -19,9 +19,9 @@ INSERT INTO body_part (body_part_name) VALUES ('calves');
 -- Muscles
 
 -- Arms
-INSERT INTO muscle (muscle_name) VALUES ('biceps. long head');
-INSERT INTO muscle (muscle_name) VALUES ('biceps. short head');
-INSERT INTO muscle (muscle_name) VALUES ('triceps. long head');
+INSERT INTO muscle (muscle_name) VALUES ('biceps_long_head');
+INSERT INTO muscle (muscle_name) VALUES ('biceps_short_head');
+INSERT INTO muscle (muscle_name) VALUES ('triceps_long_head');
 INSERT INTO muscle (muscle_name) VALUES ('triceps. lateral head');
 INSERT INTO muscle (muscle_name) VALUES ('triceps. medial head');
 INSERT INTO muscle (muscle_name) VALUES ('forearms. flexors');
@@ -60,6 +60,8 @@ INSERT INTO equipment (equipment_name) VALUES ('dumbbell');
 -- PushPullScheme
 
 INSERT INTO push_pull_scheme (p_p_scheme_name) VALUES ('pull');
+INSERT INTO push_pull_scheme (p_p_scheme_name) VALUES ('push');
+INSERT INTO push_pull_scheme (p_p_scheme_name) VALUES ('compound');
 -------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------
 

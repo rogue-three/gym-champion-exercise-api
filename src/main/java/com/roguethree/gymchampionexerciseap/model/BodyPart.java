@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "body_part")
+//@Table(name = "body_part")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "name")
 public class BodyPart {

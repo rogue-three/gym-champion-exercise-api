@@ -25,10 +25,10 @@ public class JpaExerciseService implements ExerciseService {
         return StreamSupport.stream(iterable.spliterator(), false);
     }
 
-//    @Override
-//    public Stream<Exercise> findByBodyPartName(String bodyPartName) {
-//        return exerciseRepository.findAllByBodyPartName(bodyPartName);
-//    }
+    @Override
+    public Stream<Exercise> findByBodyPartName(String bodyPartName) {
+        return exerciseRepository.findAllByBodyPartName(bodyPartName);
+    }
 
     @Override
     public Optional<Exercise> findById(Long id) {
@@ -43,5 +43,10 @@ public class JpaExerciseService implements ExerciseService {
     @Override
     public Stream<Exercise> findByEquipmentName(String equipment) {
         return exerciseRepository.findAllByEquipment_EquipmentName(equipment);
+    }
+
+    @Override
+    public Stream<Exercise> findByMuscleName(String muscleName) {
+        return exerciseRepository.findAllByMuscleName(muscleName);
     }
 }
