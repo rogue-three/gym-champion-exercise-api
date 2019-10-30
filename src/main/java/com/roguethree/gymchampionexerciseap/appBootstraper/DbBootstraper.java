@@ -45,7 +45,6 @@ public class DbBootstraper implements CommandLineRunner {
         if(!armsBPOptional.isPresent()){
             throw new RuntimeException("No such body part in data base");
         }
-//        exerciseRepository.save(armsBPOptional.get());
 
         Optional<BodyPart> foreArmsBPOptional = bodyPartRepository.findByName("forearms");
 
@@ -70,29 +69,70 @@ public class DbBootstraper implements CommandLineRunner {
         //Equipment init
 
         Optional<Equipment> dumbbellEquipmentOptional = equipmentRepository.findByEquipmentName("dumbbell");
+        if(!dumbbellEquipmentOptional.isPresent()){
+            throw new RuntimeException("No such equipment id data base");
+        }
+        Optional<Equipment> barbellEquipmentOptional = equipmentRepository.findByEquipmentName("barbell");
+        if(!barbellEquipmentOptional.isPresent()){
+            throw new RuntimeException("No such equipment id data base");
+        }
+        Optional<Equipment> kattlebellEquipmentOptional = equipmentRepository.findByEquipmentName("kattlebell");
+        if(!kattlebellEquipmentOptional.isPresent()){
+            throw new RuntimeException("No such equipment id data base");
+        }
+        Optional<Equipment> noEquipmentOptional = equipmentRepository.findByEquipmentName("no_equipment");
+        if(!noEquipmentOptional.isPresent()){
+            throw new RuntimeException("No such equipment id data base");
+        }
 
         // Body position init
 
-        Optional<BodyPosition> seatedBodyPosOptional = bodyPositionRepository.findByBodyPositionName("seated");
+        Optional<BodyPosition> seatedBodyPosOptional =
+                bodyPositionRepository.findByBodyPositionName("seated");
+        if(!seatedBodyPosOptional.isPresent()){
+            throw new RuntimeException("No such equipment id data base");
+        }
+        Optional<BodyPosition> seatedBackSuportedBodyPosOptional =
+                bodyPositionRepository.findByBodyPositionName("seated_back_supported");
+        if(!seatedBackSuportedBodyPosOptional.isPresent()){
+            throw new RuntimeException("No such equipment id data base");
+        }
+        Optional<BodyPosition> standingBodyPosOptional =
+                bodyPositionRepository.findByBodyPositionName("standing");
+        if(!standingBodyPosOptional.isPresent()){
+            throw new RuntimeException("No such equipment id data base");
+        }
+
         // Push pull scheme init
 
         Optional<PushPullScheme> pullSchemeOptional = pushPullSchemeRepository.findByPpSchemeName("pull");
+        if(!pullSchemeOptional.isPresent()){
+            throw new RuntimeException("No such equipment id data base");
+        }
+        Optional<PushPullScheme> pushSchemeOptional = pushPullSchemeRepository.findByPpSchemeName("push");
+        if(!pushSchemeOptional.isPresent()){
+            throw new RuntimeException("No such equipment id data base");
+        }
+        Optional<PushPullScheme> compoundSchemeOptional = pushPullSchemeRepository.findByPpSchemeName("compound");
+        if(!compoundSchemeOptional.isPresent()){
+            throw new RuntimeException("No such equipment id data base");
+        }
 
 
         // Muscles init
 
-        Optional<Muscle> bicepsLHMusclesOptional = muscleRepository.findByName("biceps. long head");
+        Optional<Muscle> bicepsLHMusclesOptional = muscleRepository.findByName("biceps_long_head");
         if(!bicepsLHMusclesOptional.isPresent()){
             throw new RuntimeException("No such muscle in data base");
         }
         muscleRepository.save(bicepsLHMusclesOptional.get());
 
-        Optional<Muscle> bicepsSHMusclesOptional = muscleRepository.findByName("biceps. short head");
+        Optional<Muscle> bicepsSHMusclesOptional = muscleRepository.findByName("biceps_short_head");
         if(!bicepsSHMusclesOptional.isPresent()){
             throw new RuntimeException("No such muscle in data base");
         }
 
-        Optional<Muscle> tricpsLHMusclesOptional = muscleRepository.findByName("triceps. long head");
+        Optional<Muscle> tricpsLHMusclesOptional = muscleRepository.findByName("triceps_long_head");
         if(!tricpsLHMusclesOptional.isPresent()){
             throw new RuntimeException("No such muscle in data base");
         }

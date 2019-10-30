@@ -53,6 +53,10 @@ INSERT INTO muscle (muscle_name) VALUES ('Calves');
 -- Equipment
 
 INSERT INTO equipment (equipment_name) VALUES ('dumbbell');
+INSERT INTO equipment (equipment_name) VALUES ('barbell');
+INSERT INTO equipment (equipment_name) VALUES ('kattlebell');
+INSERT INTO equipment (equipment_name) VALUES ('no_equipment');
+
 
 -------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------
@@ -68,3 +72,5 @@ INSERT INTO push_pull_scheme (p_p_scheme_name) VALUES ('compound');
 -- BodyPosition
 
 INSERT INTO body_position (body_position_name) VALUES ('seated');
+INSERT INTO body_position (body_position_name) VALUES ('seated_back_supported');
+INSERT INTO body_position (body_position_name) VALUES ('standing');
