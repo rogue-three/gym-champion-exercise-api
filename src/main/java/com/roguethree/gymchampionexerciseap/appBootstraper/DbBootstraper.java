@@ -232,11 +232,14 @@ public class DbBootstraper implements CommandLineRunner {
             throw new RuntimeException("No such muscle in data base");
         }
 
+        // EXERCISES
+
+        // Dumbbell_BicepsCurl_Standing
         Exercise dumbbellBicepsCurlStanding = new Exercise();
         dumbbellBicepsCurlStanding.setName("Dumbbell_BicepsCurl_Standing");
         dumbbellBicepsCurlStanding.setEquipment(dumbbellEquipmentOptional.get());
         dumbbellBicepsCurlStanding.setPushPullScheme(pullSchemeOptional.get());
-        dumbbellBicepsCurlStanding.setBodyPosition(seatedBodyPosOptional.get());
+        dumbbellBicepsCurlStanding.setBodyPosition(standingBodyPosOptional.get());
 
         Set<BodyPart> dumbbellBicepsCurlStandingBodyPartsSet = new HashSet<>();
         dumbbellBicepsCurlStandingBodyPartsSet.add(armsBPOptional.get());
@@ -248,6 +251,23 @@ public class DbBootstraper implements CommandLineRunner {
         dumbbellBicepsCurlStanding.setMuscles(dumbbellBicepsCurlStandingMuscleSet);
         exerciseRepository.save(dumbbellBicepsCurlStanding);
 
+        // Barbell_BicepsCurl_Standing
+        Exercise barbellBicepsCorlStanding = new Exercise();
+        barbellBicepsCorlStanding.setName("Barbell_BicepsCurl_Standing");
+        barbellBicepsCorlStanding.setEquipment(barbellEquipmentOptional.get());
+        barbellBicepsCorlStanding.setPushPullScheme(pullSchemeOptional.get());
+        barbellBicepsCorlStanding.setBodyPosition(standingBodyPosOptional.get());
+
+        Set<BodyPart> barbellBicepsCorlStandingBodyPositionSet = new HashSet<>();
+        barbellBicepsCorlStandingBodyPositionSet.add(armsBPOptional.get());
+        barbellBicepsCorlStanding.setBodyParts(barbellBicepsCorlStandingBodyPositionSet);
+
+        Set<Muscle> barbellBicepsCorlStandingMuscleSet = new HashSet<>();
+        barbellBicepsCorlStandingMuscleSet.add(bicepsLHMusclesOptional.get());
+        barbellBicepsCorlStandingMuscleSet.add(bicepsSHMusclesOptional.get());
+        barbellBicepsCorlStanding.setMuscles(barbellBicepsCorlStandingMuscleSet);
+
+        exerciseRepository.save(barbellBicepsCorlStanding);
 
     }
 

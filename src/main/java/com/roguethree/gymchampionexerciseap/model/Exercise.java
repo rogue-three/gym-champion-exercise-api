@@ -1,6 +1,7 @@
 package com.roguethree.gymchampionexerciseap.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -8,8 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "name")
+@Table(name = "exercise")
 public class Exercise {
 
     @Id
@@ -33,16 +33,18 @@ public class Exercise {
     @JoinColumn(name = "p_p_scheme", referencedColumnName = "p_p_scheme_id")
     private PushPullScheme pushPullScheme;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "exercise_to_body_part",
             joinColumns = @JoinColumn(name = "exercise_id"),
             inverseJoinColumns = @JoinColumn(name = "body_part_id"))
+    @JsonManagedReference
     private Set<BodyPart> bodyParts = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "exercise_to_muscles",
             joinColumns = @JoinColumn(name = "exercise_id"),
             inverseJoinColumns = @JoinColumn(name = "muscle_id"))
+    @JsonManagedReference
     private Set<Muscle> muscles = new HashSet<>();
 
     public Exercise(String name, Equipment equipment,

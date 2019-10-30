@@ -1,5 +1,6 @@
 package com.roguethree.gymchampionexerciseap.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,9 +11,8 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-//@Table(name = "body_part")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "name")
+@Table(name = "body_part")
+
 public class BodyPart {
 
     @Id
@@ -24,6 +24,7 @@ public class BodyPart {
     private String name;
 
     @ManyToMany(mappedBy = "bodyParts")
+    @JsonBackReference
     private Set<Exercise> exercises = new HashSet<>();
 
     public BodyPart(String name, Set<Exercise> exercises) {

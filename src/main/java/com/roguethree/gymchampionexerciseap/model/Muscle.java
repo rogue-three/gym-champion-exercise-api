@@ -1,5 +1,6 @@
 package com.roguethree.gymchampionexerciseap.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -9,8 +10,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "muscle")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "name")
 public class Muscle {
 
 
@@ -23,6 +22,7 @@ public class Muscle {
     private String name;
 
     @ManyToMany(mappedBy = "muscles")
+    @JsonBackReference
     private Set<Exercise> exercises = new HashSet<>();
 
     public Muscle(String name, Set<Exercise> exercises) {
