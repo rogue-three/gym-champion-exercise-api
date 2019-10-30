@@ -1,7 +1,7 @@
 package com.roguethree.gymchampionexerciseap.services.jpaServices;
 
 import com.roguethree.gymchampionexerciseap.model.Exercise;
-import com.roguethree.gymchampionexerciseap.model.enums.Equipment;
+import com.roguethree.gymchampionexerciseap.model.Equipment;
 import com.roguethree.gymchampionexerciseap.repository.ExerciseRepository;
 import com.roguethree.gymchampionexerciseap.services.ExerciseService;
 import org.springframework.stereotype.Service;
@@ -41,7 +41,7 @@ public class JpaExerciseService implements ExerciseService {
     }
 
     @Override
-    public Stream<Exercise> findByEquipment(Equipment equipment) {
-        return exerciseRepository.findByEquipment(equipment);
+    public Stream<Exercise> findByEquipmentName(String equipment) {
+        return exerciseRepository.findAllByEquipment_EquipmentName(equipment);
     }
 }

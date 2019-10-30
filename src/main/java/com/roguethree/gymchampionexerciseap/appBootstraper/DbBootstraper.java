@@ -1,14 +1,7 @@
 package com.roguethree.gymchampionexerciseap.appBootstraper;
 
-import com.roguethree.gymchampionexerciseap.model.BodyPart;
-import com.roguethree.gymchampionexerciseap.model.Exercise;
-import com.roguethree.gymchampionexerciseap.model.Muscle;
-import com.roguethree.gymchampionexerciseap.model.enums.BodyPosition;
-import com.roguethree.gymchampionexerciseap.model.enums.Equipment;
-import com.roguethree.gymchampionexerciseap.model.enums.PushPullScheme;
-import com.roguethree.gymchampionexerciseap.repository.BodyPartRepository;
-import com.roguethree.gymchampionexerciseap.repository.ExerciseRepository;
-import com.roguethree.gymchampionexerciseap.repository.MuscleRepository;
+import com.roguethree.gymchampionexerciseap.model.*;
+import com.roguethree.gymchampionexerciseap.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -22,13 +15,21 @@ public class DbBootstraper implements CommandLineRunner {
     private final BodyPartRepository bodyPartRepository;
     private final ExerciseRepository exerciseRepository;
     private final MuscleRepository muscleRepository;
+    private final EquipmentRepository equipmentRepository;
+    private final BodyPositionRepository bodyPositionRepository;
+    private final PushPullSchemeRepository pushPullSchemeRepository;
 
     public DbBootstraper(BodyPartRepository bodyPartRepository,
                          ExerciseRepository exerciseRepository,
-                         MuscleRepository muscleRepository) {
+                         MuscleRepository muscleRepository, EquipmentRepository equipmentRepository,
+                         BodyPositionRepository bodyPositionRepository,
+                         PushPullSchemeRepository pushPullSchemeRepository) {
         this.bodyPartRepository = bodyPartRepository;
         this.exerciseRepository = exerciseRepository;
         this.muscleRepository = muscleRepository;
+        this.equipmentRepository = equipmentRepository;
+        this.bodyPositionRepository = bodyPositionRepository;
+        this.pushPullSchemeRepository = pushPullSchemeRepository;
     }
 
     @Override
@@ -65,6 +66,18 @@ public class DbBootstraper implements CommandLineRunner {
         Optional<BodyPart> quadsBPOptional = bodyPartRepository.findByName("quads");
 
         Optional<BodyPart> calvesBPOptional = bodyPartRepository.findByName("calves");
+
+        //Equipment init
+
+        Optional<Equipment> dumbbellEquipmentOptional = equipmentRepository.findByEquipmentName("dumbbell");
+
+        // Body position init
+
+        Optional<BodyPosition> seatedBodyPosOptional = bodyPositionRepository.findByBodyPositionName("seated");
+        // Push pull scheme init
+
+        Optional<PushPullScheme> pullSchemeOptional = pushPullSchemeRepository.findByPpSchemeName("pull");
+
 
         // Muscles init
 
@@ -181,9 +194,9 @@ public class DbBootstraper implements CommandLineRunner {
 
         Exercise dumbbellBicepsCurlStanding = new Exercise();
         dumbbellBicepsCurlStanding.setName("Dumbbell_BicepsCurl_Standing");
-        dumbbellBicepsCurlStanding.setEquipment(Equipment.DUMBBELL);
-        dumbbellBicepsCurlStanding.setPushPullScheme(PushPullScheme.PULL);
-        dumbbellBicepsCurlStanding.setBodyPosition(BodyPosition.STANDING);
+        dumbbellBicepsCurlStanding.setEquipment(dumbbellEquipmentOptional.get());
+        dumbbellBicepsCurlStanding.setPushPullScheme(pullSchemeOptional.get());
+        dumbbellBicepsCurlStanding.setBodyPosition(seatedBodyPosOptional.get());
 
         Set<BodyPart> dumbbellBicepsCurlStandingBodyPartsSet = new HashSet<>();
         dumbbellBicepsCurlStandingBodyPartsSet.add(armsBPOptional.get());

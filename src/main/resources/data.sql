@@ -46,3 +46,23 @@ INSERT INTO muscle (muscle_name) VALUES ('Gluteus');
 INSERT INTO muscle (muscle_name) VALUES ('Hamstrings');
 INSERT INTO muscle (muscle_name) VALUES ('Quads');
 INSERT INTO muscle (muscle_name) VALUES ('Calves');
+
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+
+-- Equipment
+
+INSERT INTO equipment (equipment_name) VALUES ('dumbbell');
+
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+
+-- PushPullScheme
+
+INSERT INTO push_pull_scheme (p_p_scheme_name) VALUES ('pull');
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+
+-- BodyPosition
+
+INSERT INTO body_position (body_position_name) VALUES ('seated');

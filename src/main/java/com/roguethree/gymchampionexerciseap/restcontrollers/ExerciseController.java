@@ -2,7 +2,7 @@ package com.roguethree.gymchampionexerciseap.restcontrollers;
 
 
 import com.roguethree.gymchampionexerciseap.model.Exercise;
-import com.roguethree.gymchampionexerciseap.model.enums.Equipment;
+import com.roguethree.gymchampionexerciseap.model.Equipment;
 import com.roguethree.gymchampionexerciseap.services.ExerciseService;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
@@ -59,7 +59,7 @@ public class ExerciseController implements CrudRestController<Exercise, Long>{
     @Transactional
     public ResponseEntity<Resources<Resource<Exercise>>> findByEquipment(@PathVariable String equipment){
         Resources<Resource<Exercise>> resources = new Resources<>(
-                exerciseService.findByEquipment( Equipment.valueOf(equipment.toUpperCase()))
+                exerciseService.findByEquipmentName(equipment)
                 .map(this::changeToResource)
                 .collect(Collectors.toList())
         );

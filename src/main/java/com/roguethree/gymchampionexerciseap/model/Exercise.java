@@ -2,13 +2,9 @@ package com.roguethree.gymchampionexerciseap.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.roguethree.gymchampionexerciseap.model.enums.BodyPosition;
-import com.roguethree.gymchampionexerciseap.model.enums.Equipment;
-import com.roguethree.gymchampionexerciseap.model.enums.PushPullScheme;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -23,13 +19,18 @@ public class Exercise {
     @Column(name = "exercise_name")
     private String name;
 
-    @Enumerated(value = EnumType.STRING)
+
+    @OneToOne
+    @JoinColumn(name = "equipment", referencedColumnName = "equipment_id")
     private Equipment equipment;
 
-    @Enumerated(value = EnumType.STRING)
+    @OneToOne
+    @JoinColumn(name = "body_position", referencedColumnName = "body_position_id")
     private BodyPosition bodyPosition;
 
-    @Enumerated(value = EnumType.STRING)
+
+    @OneToOne
+    @JoinColumn(name = "p_p_scheme", referencedColumnName = "p_p_scheme_id")
     private PushPullScheme pushPullScheme;
 
     @ManyToMany
