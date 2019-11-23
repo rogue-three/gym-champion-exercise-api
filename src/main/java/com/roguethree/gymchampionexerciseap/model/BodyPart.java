@@ -1,13 +1,9 @@
 package com.roguethree.gymchampionexerciseap.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -59,18 +55,4 @@ public class BodyPart {
         this.exercises = exercises;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        BodyPart bodyPart = (BodyPart) o;
-//        return id.equals(bodyPart.id) &&
-//                name.equals(bodyPart.name) &&
-//                exercises.equals(bodyPart.exercises);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id, name, exercises);
-//    }
 }

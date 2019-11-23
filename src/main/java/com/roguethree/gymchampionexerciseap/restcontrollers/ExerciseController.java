@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -25,45 +26,34 @@ public class ExerciseController implements CrudRestController<Exercise, Long>{
         this.exerciseService = exerciseService;
     }
 
-
+    @CrossOrigin
     @Override
     @GetMapping
-    public ResponseEntity<Resources<Resource<Exercise>>> getAll() {
-        Resources<Resource<Exercise>> resources = new Resources<>(
-                exerciseService.findAll()
-                        .map(this::changeToResource)
-                        .collect(Collectors.toList())
-        );
-        return ResponseEntity.ok().body(resources);
+    public ResponseEntity<Set<Exercise>> getAll(){
+        Set<Exercise> exerciseList =  exerciseService.findAll().collect(Collectors.toSet());
+        return ResponseEntity.ok().body(exerciseList);
     }
 
-    @Override
     @GetMapping(value = "/id/{id}")
-    public ResponseEntity<Resource<Exercise>> getById(@PathVariable Long id) {
+    public ResponseEntity<Exercise> getById(@PathVariable Long id){
         return exerciseService.findById(id)
-                .map(this::changeToResource)
-                .map(bodyOfResource -> ResponseEntity.ok().body(bodyOfResource))
+                .map(exercise -> ResponseEntity.ok().body(exercise))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @Override
     @GetMapping(value = "/name/{name}")
-    public ResponseEntity<Resource<Exercise>> getByName(@PathVariable String name) {
+    public ResponseEntity<Exercise> getByName(@PathVariable String name) {
         return exerciseService.findByName(name)
-                .map(this::changeToResource)
-                .map(bodyOfResource -> ResponseEntity.ok().body(bodyOfResource))
+                .map(exerciseOptional -> ResponseEntity.ok().body(exerciseOptional))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/equipment/{equipment}")
     @Transactional
-    public ResponseEntity<Resources<Resource<Exercise>>> findByEquipment(@PathVariable String equipment){
-        Resources<Resource<Exercise>> resources = new Resources<>(
-                exerciseService.findByEquipmentName(equipment)
-                .map(this::changeToResource)
-                .collect(Collectors.toList())
-        );
-        return ResponseEntity.ok().body(resources);
+    public ResponseEntity<Set<Exercise>> findByEquipment(@PathVariable String equipment){
+        Set<Exercise> exercises = exerciseService.findByEquipmentName(equipment).collect(Collectors.toSet());
+        return ResponseEntity.ok().body(exercises);
     }
 
     @GetMapping(value = "/bodypart/{bodyPart}")
