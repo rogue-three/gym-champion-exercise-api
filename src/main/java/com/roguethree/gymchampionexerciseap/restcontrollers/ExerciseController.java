@@ -2,19 +2,13 @@ package com.roguethree.gymchampionexerciseap.restcontrollers;
 
 
 import com.roguethree.gymchampionexerciseap.model.Exercise;
-import com.roguethree.gymchampionexerciseap.model.Equipment;
 import com.roguethree.gymchampionexerciseap.services.ExerciseService;
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping(value = "/api/v1/exercises")
@@ -58,30 +52,18 @@ public class ExerciseController implements CrudRestController<Exercise, Long>{
 
     @GetMapping(value = "/bodypart/{bodyPart}")
     @Transactional
-    public ResponseEntity<Resources<Resource<Exercise>>> getExercisesByBodyPart(
+    public ResponseEntity<Set<Exercise>> getExercisesByBodyPart(
             @PathVariable("bodyPart") String bodyPart){
-        Resources<Resource<Exercise>> resources = new Resources<>(
-                exerciseService.findByBodyPartName(bodyPart)
-                        .map(this::changeToResource)
-                        .collect(Collectors.toList())
-        );
-        resources.add(linkTo(methodOn(ExerciseController.class)
-            .getExercisesByBodyPart(bodyPart)).withRel("byBodyPart"));
-        return ResponseEntity.ok().body(resources);
+        Set<Exercise> exercises = exerciseService.findByBodyPartName(bodyPart).collect(Collectors.toSet());
+        return ResponseEntity.ok().body(exercises);
     }
 
     @GetMapping(value = "/muscle/{muscleName}")
     @Transactional
-    public ResponseEntity<Resources<Resource<Exercise>>> getExercisesByMuscle(
+    public ResponseEntity<Set<Exercise>> getExercisesByMuscle(
             @PathVariable("muscleName") String muscleName){
-        Resources<Resource<Exercise>> resources = new Resources<>(
-                exerciseService.findByMuscleName(muscleName)
-                .map(this::changeToResource)
-                .collect(Collectors.toList())
-        );
-        resources.add(linkTo(methodOn(ExerciseController.class)
-        .getExercisesByMuscle(muscleName)).withRel("byMuscleName"));
-        return ResponseEntity.ok().body(resources);
+        Set<Exercise> exercises = exerciseService.findByMuscleName(muscleName).collect(Collectors.toSet());
+        return ResponseEntity.ok().body(exercises);
     }
 
     @Override
@@ -104,12 +86,4 @@ public class ExerciseController implements CrudRestController<Exercise, Long>{
         return null;
     }
 
-
-    private Resource<Exercise> changeToResource(Exercise exercise){
-        Resource<Exercise> exerciseResource = new Resource<>(exercise);
-        exerciseResource.add(linkTo(methodOn(ExerciseController.class)
-                .getById(exercise.getId()))
-                .withSelfRel());
-        return exerciseResource;
-    }
 }
