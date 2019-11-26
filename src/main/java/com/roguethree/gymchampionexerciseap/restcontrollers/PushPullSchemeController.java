@@ -38,7 +38,7 @@ public class PushPullSchemeController implements CrudRestController<PushPullSche
     @Override
     @GetMapping(value = "/name/{name}")
     public ResponseEntity<PushPullScheme> getByName(String name) {
-        return ppService.findByName(name)
+        return ppService.findByName(name.toLowerCase())
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

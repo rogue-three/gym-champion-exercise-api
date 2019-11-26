@@ -39,7 +39,7 @@ public class BodyPositionController implements CrudRestController<BodyPosition, 
     @Override
     @GetMapping(value = "/name/{name}")
     public ResponseEntity<BodyPosition> getByName(@PathVariable String name) {
-        return bodyPositionService.findByName(name)
+        return bodyPositionService.findByName(name.toLowerCase())
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

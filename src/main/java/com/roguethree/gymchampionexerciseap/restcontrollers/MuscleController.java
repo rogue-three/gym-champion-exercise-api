@@ -39,7 +39,7 @@ public class MuscleController implements CrudRestController<Muscle, Long> {
     @Override
     @GetMapping(value = "/name/{name}")
     public ResponseEntity<Muscle> getByName(@PathVariable String name) {
-        return muscleService.findByName(name)
+        return muscleService.findByName(name.toLowerCase())
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

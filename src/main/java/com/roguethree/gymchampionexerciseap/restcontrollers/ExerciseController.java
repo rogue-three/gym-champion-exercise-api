@@ -38,7 +38,7 @@ public class ExerciseController implements CrudRestController<Exercise, Long>{
     @Override
     @GetMapping(value = "/name/{name}")
     public ResponseEntity<Exercise> getByName(@PathVariable String name) {
-        return exerciseService.findByName(name)
+        return exerciseService.findByName(name.toLowerCase())
                 .map(exerciseOptional -> ResponseEntity.ok().body(exerciseOptional))
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -46,7 +46,8 @@ public class ExerciseController implements CrudRestController<Exercise, Long>{
     @GetMapping("/equipment/{equipment}")
     @Transactional
     public ResponseEntity<Set<Exercise>> findByEquipment(@PathVariable String equipment){
-        Set<Exercise> exercises = exerciseService.findByEquipmentName(equipment).collect(Collectors.toSet());
+        Set<Exercise> exercises = exerciseService.findByEquipmentName(equipment.toLowerCase())
+                .collect(Collectors.toSet());
         return ResponseEntity.ok().body(exercises);
     }
 
@@ -54,7 +55,8 @@ public class ExerciseController implements CrudRestController<Exercise, Long>{
     @Transactional
     public ResponseEntity<Set<Exercise>> getExercisesByBodyPart(
             @PathVariable("bodyPart") String bodyPart){
-        Set<Exercise> exercises = exerciseService.findByBodyPartName(bodyPart).collect(Collectors.toSet());
+        Set<Exercise> exercises = exerciseService.findByBodyPartName(bodyPart.toLowerCase())
+                .collect(Collectors.toSet());
         return ResponseEntity.ok().body(exercises);
     }
 
@@ -62,7 +64,8 @@ public class ExerciseController implements CrudRestController<Exercise, Long>{
     @Transactional
     public ResponseEntity<Set<Exercise>> getExercisesByMuscle(
             @PathVariable("muscleName") String muscleName){
-        Set<Exercise> exercises = exerciseService.findByMuscleName(muscleName).collect(Collectors.toSet());
+        Set<Exercise> exercises = exerciseService.findByMuscleName(muscleName.toLowerCase())
+                .collect(Collectors.toSet());
         return ResponseEntity.ok().body(exercises);
     }
 

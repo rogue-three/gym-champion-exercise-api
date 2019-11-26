@@ -42,7 +42,7 @@ public class EquipmentController implements CrudRestController<Equipment, Long> 
     @Override
     @GetMapping(value = "/name/{name}")
     public ResponseEntity<Equipment> getByName(@PathVariable String name) {
-        return equipmentService.findByName(name)
+        return equipmentService.findByName(name.toLowerCase())
                 .map(equipment -> ResponseEntity.ok().body(equipment))
                 .orElse(ResponseEntity.notFound().build());
     }
