@@ -27,7 +27,7 @@ public class JpaExerciseService implements ExerciseService {
 
     @Override
     public Stream<Exercise> findByBodyPartName(String bodyPartName) {
-        return exerciseRepository.findAllByBodyPartName(bodyPartName);
+        return exerciseRepository.findAllByBodyPartName(bodyPartName.toLowerCase());
     }
 
     @Override
@@ -37,16 +37,16 @@ public class JpaExerciseService implements ExerciseService {
 
     @Override
     public Optional<Exercise> findByName(String name) {
-        return exerciseRepository.findByName(name);
+        return exerciseRepository.findByName(name.toLowerCase());
     }
 
     @Override
     public Stream<Exercise> findByEquipmentName(String equipment) {
-        return exerciseRepository.findAllByEquipment_EquipmentName(equipment);
+        return exerciseRepository.findAllByEquipment_EquipmentName(equipment.toLowerCase());
     }
 
     @Override
     public Stream<Exercise> findByMuscleName(String muscleName) {
-        return exerciseRepository.findAllByMuscleName(muscleName);
+        return exerciseRepository.findAllByMuscleName(muscleName.toLowerCase());
     }
 }

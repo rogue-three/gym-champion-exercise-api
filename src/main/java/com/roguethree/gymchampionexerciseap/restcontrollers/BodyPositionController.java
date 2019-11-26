@@ -1,7 +1,7 @@
 package com.roguethree.gymchampionexerciseap.restcontrollers;
 
-import com.roguethree.gymchampionexerciseap.model.Muscle;
-import com.roguethree.gymchampionexerciseap.services.MuscleService;
+import com.roguethree.gymchampionexerciseap.model.BodyPosition;
+import com.roguethree.gymchampionexerciseap.services.BodyPositionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,34 +12,34 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "api/v1/muscle")
-public class MuscleController implements CrudRestController<Muscle, Long> {
+@RequestMapping(value = "api/v1/bodypositions")
+public class BodyPositionController implements CrudRestController<BodyPosition, Long>{
 
-    private final MuscleService muscleService;
+    private final BodyPositionService bodyPositionService;
 
-    public MuscleController(MuscleService muscleService) {
-        this.muscleService = muscleService;
+    public BodyPositionController(BodyPositionService bodyPositionService) {
+        this.bodyPositionService = bodyPositionService;
     }
 
     @Override
     @GetMapping
-    public ResponseEntity<Set<Muscle>> getAll() {
-        Set<Muscle> muscles = muscleService.findAll().collect(Collectors.toSet());
-        return ResponseEntity.ok().body(muscles);
+    public ResponseEntity<Set<BodyPosition>> getAll() {
+        Set<BodyPosition> bodyPositions = bodyPositionService.findAll().collect(Collectors.toSet());
+        return ResponseEntity.ok(bodyPositions);
     }
 
     @Override
     @GetMapping(value = "/id/{id}")
-    public ResponseEntity<Muscle> getById(@PathVariable Long id) {
-        return muscleService.findById(id)
+    public ResponseEntity<BodyPosition> getById(@PathVariable Long id) {
+        return bodyPositionService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @Override
     @GetMapping(value = "/name/{name}")
-    public ResponseEntity<Muscle> getByName(@PathVariable String name) {
-        return muscleService.findByName(name)
+    public ResponseEntity<BodyPosition> getByName(@PathVariable String name) {
+        return bodyPositionService.findByName(name)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
